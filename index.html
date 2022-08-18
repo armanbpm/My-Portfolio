@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/fbe7fd53fc.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src ="images/logo2.PNG" class="logo">
+                <ul>
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    
+                </ul>
+                
+            </nav>
+            <div class="header-text">
+                <p>Web Developer</p>
+                <h2>Myself <span>Arman</span><br> from Bogura </h2>
+            </div>
+        </div>
+        
+    </div>
+<!-------------------------about-------------------->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                <img src="images/user2.png">
+            </div>
+                <div class="about-col-2">
+                <h2 class="sub-title">About Me</h2>
+                <p>
+                    This is Arman from Bogura. I had completed by Bachelor of Science Degree in CSE from
+                    Pundra University of Science & Technology, Bogura. Currently, I am doing my Msc in 
+                    Software Engineering in Daffodil International University
+                </p>
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')" >Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Web Development</span><br>Web app development</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>Web Development</span><br>Web app development</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>BSc in CSE</span><br>Pundra University of Science & Technology || CGPA:3.92</li>
+                        <li><span>MSc in Software Engineering(Ongoing)</span><br>Daffodil International University</li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------Projects--------------->
+    <div id="projects">
+        <div class="container">
+            <h2 class="sub-title">My Projects</h2>
+            <div class="projects-list">
+                <div>
+                    <h2>E-commerce website</h2>
+                    <p>I had design it using html, css and js</p>
+                    <a href="#">Learn more</a>
+                </div>
+
+                <div>
+                    <h2>Blog website</h2>
+                    <p>I had design it using html, css and js</p>
+                    <a href="#">Learn more</a>
+                </div>
+
+                <div>
+                    <h2>Restaurant Website</h2>
+                    <p>I had design it using html, css and js</p>
+                    <a href="#">Learn more</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--------------------------Resume-------------->
+    <div>
+       <a href="images/Arman(Resume).pdf" download class="btn btn2">Download</a>
+        
+    </div>
+    <!--------------------------Contact-------------->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h2 class="sub-title">Contact me</h2>
+                    <p><i class="fa-solid fa-envelope"></i>aarman@engineer.com</p>
+                    <p><i class="fa-solid fa-square-phone"></i>+8801916989753</p>
+                    <div class="social-icons">
+                       <a href="https://facebook.com/armanbpm" ><i class="fa-brands fa-facebook"></i></a>
+                       <a href="https://linkedin.com/armanbpm" ><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+
+                </div>
+            </div>
+
+        </div>
+        <div class ="copyright">
+            <p>Copyright © 2022 Arman. All Rights Reserved</p>
+        </div>
+    </div>
+        
+    <script>
+
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz28y1Ft1mN-o0oXydozydUalmcwO4PA87I198i3rxChHPpCH4N8VdCKSewxoO32LOGDA/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Message sent successfully"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+    
+</body>
+</html>
